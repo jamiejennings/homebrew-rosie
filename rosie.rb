@@ -36,8 +36,8 @@ class Rosie < Formula
     pkgshare.install "Makefile"
 
     ohai "Rosie installed successfully!"
-    ohai "    RPL libraries, documentation, etc are in " + pkgshare
-    ohai "    Executable is " + bin/"rosie"
+    ohai "    RPL libraries, documentation, etc are in #{HOMEBREW_PREFIX}/share/rosie"
+    ohai "    Executable is #{HOMEBREW_PREFIX}/bin/rosie"
     ohai "    Try this example, and look for color text output: rosie basic.matchall /etc/resolv.conf"
 
   end
@@ -52,7 +52,7 @@ class Rosie < Formula
     # foo = '"echo ' + testcmd + ' | ' + bin + '/rosie -D"'
     # system "/usr/bin/env", "bash", "-c", foo
 
-    system bin/"rosie", "-info"  # Need to check output of -info!
+    system bin/"rosie", "-info"  # Not checking output.  Just a sniff test.
     Dir.chdir(pkgshare)
     system "make", 'HOME=' + pkgshare, 'EXECROSIE=' + bin/"rosie", "test"
   end
