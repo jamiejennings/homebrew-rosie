@@ -1,11 +1,11 @@
 # Example homebrew formula for Rosie Pattern Language
 # https://github.com/jamiejennings/rosie-pattern-language
 
-class Test2 < Formula
+class Rosie < Formula
   desc "Rosie Pattern Language"
-  homepage "https://github.com/jamiejennings/rosie-pattern-language"
-  url "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "dev"
-  version "dev"
+  homepage "https://github.com/jamiejennings/homebrew-rosie"
+  url "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "master"
+  version "current"
   sha256 ""
 
   def install
