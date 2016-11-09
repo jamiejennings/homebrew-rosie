@@ -37,7 +37,7 @@ class Rosie < Formula
 
     ohai "Rosie installed successfully!"
     ohai "    RPL libraries, documentation, etc are in #{HOMEBREW_PREFIX}/share/rosie"
-    ohai "    Executable is #{HOMEBREW_PREFIX}/bin/rosie"
+    ohai "    Executable will be linked (by brew) to #{HOMEBREW_PREFIX}/bin/rosie"
     ohai "    Try this example, and look for color text output: rosie basic.matchall /etc/resolv.conf"
 
   end
@@ -51,6 +51,8 @@ class Rosie < Formula
     # testcmd = "'print(1); os.exit()'"
     # foo = '"echo ' + testcmd + ' | ' + bin + '/rosie -D"'
     # system "/usr/bin/env", "bash", "-c", foo
+
+    ohai "Note: Use -verbose flag to observe test output"
 
     system bin/"rosie", "-info"  # Not checking output.  Just a sniff test.
     Dir.chdir(pkgshare)
