@@ -8,6 +8,9 @@ class Rosie < Formula
   version "current"
   sha256 ""
 
+  depends_on "readline"
+  depends_on :xcode => :build
+
   def install
     ENV.deparallelize  # if your formula fails when building in parallel
     system "make", "BREW=true"
