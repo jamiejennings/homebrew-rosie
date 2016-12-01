@@ -8,7 +8,9 @@ class Rosie < Formula
   version "current"
   sha256 ""
 
-  depends_on "readline"
+  # Rosie does NOT require the GNU readline lib.  The Apple equivalent works fine. 
+  #depends_on "readline"    
+
   depends_on :xcode => :build
 
   def install
