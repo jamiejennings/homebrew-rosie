@@ -3,47 +3,22 @@
 
 class Rosie < Formula
   desc "Rosie Pattern Language"
-  homepage "https://github.com/jamiejennings/homebrew-rosie"
-  url "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "master"
+  homepage "http://rosie-lang.org"
+#  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v1.0.0-beta-1"
+  url "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "beta2"
   version "current"
   sha256 ""
-
-  # Rosie does NOT require the GNU readline lib.  The Apple equivalent works fine. 
-  #depends_on "readline"    
 
   depends_on :xcode => :build
 
   def install
-    ENV.deparallelize  # if your formula fails when building in parallel
+    ENV.deparallelize
     system "make", "BREW=true"
-    inreplace "bin/rosie" do |s|
-      s.gsub! buildpath, pkgshare
-    end
-    bin.mkdir
-    bin.install "bin/rosie"
-    pkgshare.mkpath
-    # Required
-    pkgshare.install "VERSION"
-    pkgshare.install Dir["bin"]
-    pkgshare.install Dir["lib"]
-    pkgshare.install Dir["src"]
-    # Very good to have
-    pkgshare.install "MANIFEST"
-    pkgshare.install Dir["rpl"]
-    pkgshare.install Dir["test"]
-    # Informational
-    pkgshare.install "CHANGELOG", "LICENSE", "README.md"
-    pkgshare.install Dir["doc"]
-    pkgshare.install Dir["docker"]
-    # Optional
-    pkgshare.install Dir["ffi"]
-    # Needed to run tests (see below)
-    pkgshare.install "Makefile"
-
+    system "make", "install", "DESTDIR="+prefix
     ohai "Rosie installed successfully!"
-    ohai "    RPL libraries, documentation, etc are in #{HOMEBREW_PREFIX}/share/rosie"
+    ohai "    RPL libraries, documentation, etc are in #{HOMEBREW_PREFIX}/lib/rosie"
     ohai "    Executable will be linked (by brew) to #{HOMEBREW_PREFIX}/bin/rosie"
-    ohai "    Try this example, and look for color text output: rosie basic.matchall /etc/resolv.conf"
+    ohai "    Try this example, and look for color text output: rosie match all.things #{HOMEBREW_PREFIX}/README"
 
   end
 
@@ -57,10 +32,10 @@ class Rosie < Formula
     # foo = '"echo ' + testcmd + ' | ' + bin + '/rosie -D"'
     # system "/usr/bin/env", "bash", "-c", foo
 
-    ohai "Note: Use -verbose flag to observe test output"
+#     ohai "Note: Use -verbose flag to observe test output"
 
-    system bin/"rosie", "-info"  # Not checking output.  Just a sniff test.
-    Dir.chdir(pkgshare)
-    system "make", 'HOME=' + pkgshare, 'EXECROSIE=' + bin/"rosie", "test"
+    system bin/"rosie", "config"  # Not checking output.  Just a sniff test.
+#     Dir.chdir(pkgshare)
+#     system "make", 'HOME=' + pkgshare, 'EXECROSIE=' + bin/"rosie", "test"
   end
 end
