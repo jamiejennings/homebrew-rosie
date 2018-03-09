@@ -2,12 +2,12 @@
 # https://github.com/jamiejennings/rosie-pattern-language
 
 class Rosie < Formula
-  desc "Rosie Pattern Language"
+  desc "The Rosie Project's pattern language and pattern matching engine"
   homepage "http://rosie-lang.org"
-#  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v1.0.0-beta-1"
-  url "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "beta2"
-  version "current"
-  sha256 ""
+  head "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "master"
+  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v1.0.0-beta-2"
+  version "1.0.0-beta"
+  #  sha256 ""
 
   depends_on :xcode => :build
 
@@ -19,23 +19,12 @@ class Rosie < Formula
     ohai "    RPL libraries, documentation, etc are in #{HOMEBREW_PREFIX}/lib/rosie"
     ohai "    Executable will be linked (by brew) to #{HOMEBREW_PREFIX}/bin/rosie"
     ohai "    Try this example, and look for color text output: rosie match all.things #{HOMEBREW_PREFIX}/README"
-
   end
 
   test do
     # `test do` will create, run in and delete a temporary directory.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    # testcmd = "'dofile(\"" + pkgshare + "/test/all.lua\")'"
-    # testcmd = "'print(1); os.exit()'"
-    # foo = '"echo ' + testcmd + ' | ' + bin + '/rosie -D"'
-    # system "/usr/bin/env", "bash", "-c", foo
-
-#     ohai "Note: Use -verbose flag to observe test output"
-
-    system bin/"rosie", "config"  # Not checking output.  Just a sniff test.
-#     Dir.chdir(pkgshare)
-#     system "make", 'HOME=' + pkgshare, 'EXECROSIE=' + bin/"rosie", "test"
+    system "#{bin}/rosie", "config"
+    system "#{bin}/rosie", "match", "-o", "line", "all.things", "#{prefix}/README"
+    assert_equal version, shell_output("#{bin}/rosie version").strip[0, version.to_s.length]
   end
 end
