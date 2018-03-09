@@ -13,14 +13,6 @@ available in this repository.)
 brew install rosie
 ```
 
-If you want to run the full rosie test suite (not recommended), you can launch
-it from brew.
-
-
-```shell
-brew test -verbose rosie
-```
-
 # References
 
 * [Rosie Pattern Language project](https://github.com/jamiejennings/rosie-pattern-language)
