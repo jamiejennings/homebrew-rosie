@@ -4,7 +4,7 @@
 class Rosie < Formula
   desc "The Rosie Project's pattern language and pattern matching engine"
   homepage "http://rosie-lang.org"
-  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v1.0.0-beta-9"
+  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v1.0.0-beta-10"
   version "1.0.0-beta"
   head "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "master"
   #  sha256 ""
