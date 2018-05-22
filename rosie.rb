@@ -1,11 +1,13 @@
 # Example homebrew formula for Rosie Pattern Language
 # https://github.com/jamiejennings/rosie-pattern-language
 
+$ROSIE_VERSION = "1.0.0-beta-10"
+
 class Rosie < Formula
   desc "The Rosie Project's pattern language and pattern matching engine"
   homepage "http://rosie-lang.org"
-  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v1.0.0-beta-9"
-  version "1.0.0-beta"
+  version $ROSIE_VERSION
+  url "https://github.com/jamiejennings/rosie-pattern-language.git", :tag => "v#{$ROSIE_VERSION}"
   head "https://github.com/jamiejennings/rosie-pattern-language.git", :branch => "master"
   #  sha256 ""
 
@@ -13,12 +15,15 @@ class Rosie < Formula
 
   def install
     ENV.deparallelize
-    system "make", "BREW=true"
-    system "make", "install", "DESTDIR="+prefix
+    if prefix=="" then
+      odie "homebrew prefix is not set!  (usually this is /usr/local)"
+    end
+    system "make", "clean"
+    system "make", "install", "BREW=true", "DESTDIR="+prefix
     ohai "Rosie installed successfully!"
     ohai "    RPL libraries, documentation, etc are in #{HOMEBREW_PREFIX}/lib/rosie"
     ohai "    Executable will be linked (by brew) to #{HOMEBREW_PREFIX}/bin/rosie"
-    ohai "    Try this example, and look for color text output: rosie match all.things #{HOMEBREW_PREFIX}/README"
+    ohai "    Try this example, and look for color text output: rosie match all.things #{HOMEBREW_PREFIX}/lib/rosie/README"
   end
 
   test do
