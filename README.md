@@ -1,19 +1,7 @@
-# To install Rosie Pattern Language on OS X
+# We have moved!
 
-First, add this repository to brew.  This is a one-time step.
+The Rosie community's new home for installers and patterns is at
+[https://gitlab.com/rosie-community](https://gitlab.com/rosie-community).
 
-```shell
-brew tap jamiejennings/rosie
-```
+Rosie's home page remains at [http://rosie-lang.org](http://rosie-lang.org).
 
-Install the current version of rosie.  (Formulae for other versions may also be
-available in this repository.)
-
-```shell
-brew install rosie
-```
-
-# References
-
-* [Rosie Pattern Language project](https://github.com/jamiejennings/rosie-pattern-language)
-* [Homebrew](http://brew.sh) package management for Mac OS X
